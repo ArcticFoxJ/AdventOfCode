@@ -8,8 +8,8 @@ These solutions are coded with C#.
 
 ### 2023
 
-Completed: **0 / 25**
+Completed: **1 / 25**
 
-- [ ] Day 1: Trebuchet?!
+- [X] Day 1: Trebuchet?!
 - [ ] Day 2: Cube Conundrum
 - [ ] Day 3: Gear Ratios

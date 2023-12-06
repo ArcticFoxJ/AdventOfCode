@@ -15,23 +15,28 @@ namespace AdventOfCode._2023.Day2
                 {"blue", 14 }
             };
 
-            return games.ToDictionary(
+            return GetMaxColorCounts(games)
+            .Where(x => x.Value.All(y => y.Value <= cubeTotals[y.Key]))
+            .Sum(x => x.Key); //2617
+        }
+
+        protected override int Part2(string[] games)
+        {
+            return GetMaxColorCounts(games)
+            .Select(x => x.Value.Aggregate(1, (a, b) => a * b.Value))
+            .Sum(); //59795
+        }
+
+        private Dictionary<int, Dictionary<string, int>> GetMaxColorCounts(string[] games)
+            => games.ToDictionary(
                 x => int.Parse(Regex.Match(x, @"Game (?<id>\d*):").Groups["id"].Value),
                 x => colors.ToDictionary(
-                    c => c, 
+                    c => c,
                     c => Regex.Matches(x, string.Format(@"\D*(?<count>\d+) (?<color>{0})", $"{string.Join('|', colors)}"))
                         .Where(y => y.Groups["color"].Value == c)
                         .Select(y => int.Parse(y.Groups["count"].Value))
                         .Max()
                     )
-            )
-            .Where(x => x.Value.All(y => y.Value <= cubeTotals[y.Key]))
-            .Sum(x => x.Key); //2617
-        }
-
-        protected override int Part2(string[] data)
-        {
-            throw new NotImplementedException();
-        }
+            );
     }
 }

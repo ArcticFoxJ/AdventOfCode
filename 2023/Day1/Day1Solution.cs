@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace AdventOfCode._2023.Day_1
+namespace AdventOfCode._2023.Day1
 {
     internal class Day1Solution : SolutionBase
     {

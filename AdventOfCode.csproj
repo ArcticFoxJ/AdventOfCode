@@ -8,8 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="2023\Day 1\README.md">
+    <None Update="2023\Day1\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\2023_Day2Solution_TestData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="TestData\2023_Day1Solution_TestData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

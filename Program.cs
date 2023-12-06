@@ -1,6 +1,21 @@
-﻿// See https://aka.ms/new-console-template for more information
-using AdventOfCode._2023.Day2;
+﻿using AdventOfCode;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 
-var currentSolution = new Day2Solution();
+var solutions = Assembly.GetAssembly(typeof(SolutionBase))
+    .GetTypes()
+    .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(SolutionBase)))
+    .Select(x => (SolutionBase)Activator.CreateInstance(x))
+    .OrderBy(x => x?.SolutionName);
 
-currentSolution.LogSolution();
+foreach (var solution in solutions)
+{
+    try
+    {
+        solution?.LogSolution();
+        Console.WriteLine();
+    }
+    catch (Exception e) {
+        Console.WriteLine();
+    }
+}

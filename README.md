@@ -8,8 +8,11 @@ These solutions are coded with C#.
 
 ### 2023
 
-Completed: **1 / 25**
+Completed: **2 / 25**
 
 - [X] Day 1: Trebuchet?!
-- [ ] Day 2: Cube Conundrum
+- [X] Day 2: Cube Conundrum
 - [ ] Day 3: Gear Ratios
+- [ ] Day 4: Scratchcards
+- [ ] Day 5: If You Give A Seed A Fertilizer
+- [ ] Day 6: Wait For It

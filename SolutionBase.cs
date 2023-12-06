@@ -6,7 +6,7 @@ namespace AdventOfCode
     {
         private static int Year => 2023;
 
-        private string SolutionName => Regex.Replace(GetType().Name, "(\\B[A-Z])", " $1");
+        public string SolutionName => Regex.Replace(GetType().Name, "(\\B[A-Z])", " $1");
 
         protected abstract int Part1(string[] data);
         protected abstract int Part2(string[] data);

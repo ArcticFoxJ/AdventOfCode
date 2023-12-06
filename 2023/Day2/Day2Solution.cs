@@ -15,18 +15,18 @@ namespace AdventOfCode._2023.Day2
                 {"blue", 14 }
             };
 
-            Dictionary<int, Dictionary<string, int>> gameCounts = games.ToDictionary(
+            return games.ToDictionary(
                 x => int.Parse(Regex.Match(x, @"Game (?<id>\d*):").Groups["id"].Value),
                 x => colors.ToDictionary(
                     c => c, 
-                    c =>
-                    {
-                        var colorGroups = Regex.Matches(x, string.Format(@"\D*(?<count>\d+) (?<color>{0})", $"{string.Join('|', colors)}"));
-                        return colorGroups.Where(y => y.Groups["color"].Value == c).Select(y => int.Parse(y.Groups["count"].Value)).Max();
-                    })
-            );
-
-            return gameCounts.Where(x => x.Value.All(y => y.Value <= cubeTotals[y.Key])).Sum(x => x.Key); //2617
+                    c => Regex.Matches(x, string.Format(@"\D*(?<count>\d+) (?<color>{0})", $"{string.Join('|', colors)}"))
+                        .Where(y => y.Groups["color"].Value == c)
+                        .Select(y => int.Parse(y.Groups["count"].Value))
+                        .Max()
+                    )
+            )
+            .Where(x => x.Value.All(y => y.Value <= cubeTotals[y.Key]))
+            .Sum(x => x.Key); //2617
         }
 
         protected override int Part2(string[] data)

@@ -14,20 +14,13 @@ namespace AdventOfCode._2023.Day4
 
         protected override int Part1(string[] tickets)
         {
-            var data = tickets.Select(x =>
+            return tickets.Select(x =>
             {
                 var id = int.Parse(Regex.Match(x, @"Card(\s+)(?<id>\d*):").Groups["id"].Value);
                 var parts = x.Split(':')[1].Split('|').Select(y => y.Split(' ').Where(z => !string.IsNullOrEmpty(z)).Select(z => int.Parse(z)).ToArray()).ToArray();
                 return new GameData(id, parts[0], parts[1]);
-            });
-
-            int totalScore = 0;
-            foreach (var part in data)
-            {
-                totalScore += Convert.ToInt32(Math.Pow(2, part.ChosenNumbers.Where(x => part.WinningNumbers.Contains(x)).Count() - 1));
-            }
-
-            return totalScore; //20829
+            })
+            .Sum(x => Convert.ToInt32(Math.Pow(2, x.ChosenNumbers.Where(y => x.WinningNumbers.Contains(y)).Count() - 1))); //20829
         }
 
         protected override int Part2(string[] tickets)

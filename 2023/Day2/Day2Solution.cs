@@ -15,7 +15,6 @@ namespace AdventOfCode._2023.Day2
                 {"blue", 14 }
             };
 
-            var possibleIdTotal = 0;
             Dictionary<int, Dictionary<string, int>> gameCounts = games.ToDictionary(
                 x => int.Parse(Regex.Match(x, @"Game (?<id>\d*):").Groups["id"].Value),
                 x => colors.ToDictionary(
@@ -27,13 +26,7 @@ namespace AdventOfCode._2023.Day2
                     })
             );
 
-            var validGames = gameCounts.Where(x => x.Value.All(y => y.Value <= cubeTotals[y.Key]));
-            foreach (var validGame in validGames)
-            {
-                possibleIdTotal += validGame.Key;
-            }
-
-            return possibleIdTotal; //2617
+            return gameCounts.Where(x => x.Value.All(y => y.Value <= cubeTotals[y.Key])).Sum(x => x.Key); //2617
         }
 
         protected override int Part2(string[] data)
